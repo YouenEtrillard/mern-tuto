@@ -1,8 +1,5 @@
 // @desc    Get goals
 // @route   GET /api/goals
-
-const { json } = require("express/lib/response");
-
 // @access  Private
 const getGoals = (req, res) => {
   res.status(200).json({message: 'Get goals'})
