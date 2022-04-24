@@ -23,7 +23,7 @@ const getGoals = async (token) => {
     },
   };
 
-  const response = await axios.get(API_URL + "getAll", config);
+  const response = await axios.get(API_URL, config);
 
   return response.data;
 }
