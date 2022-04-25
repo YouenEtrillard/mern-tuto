@@ -77,6 +77,28 @@ export const deleteGoal = createAsyncThunk('goals/delete',
   }
 )
 
+// Edit goal
+export const editGoal = createAsyncThunk('goals/edit',
+  async (goal, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+
+      return await goalService.editGoal(goal, token);
+    } catch (error) {
+      const message = (
+        (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) ||
+        error.message ||
+        error.toString()
+      );
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+)
+
 export const goalSlice = createSlice({
   name: 'goal',
   initialState,
