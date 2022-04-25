@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteGoal, editGoal } from '../features/goals/goalSlice'
-import { FaEdit, FaCheck } from 'react-icons/fa';
+import { FaEdit, FaCheck, FaUndoAlt } from 'react-icons/fa';
 
 
 function GoalItem({goal}) {
   const dispatch = useDispatch();
   const [text, setText] = useState(goal.text);
+  const [prevText, setPrevText] = useState(goal.text);
   const [isBeingEdited, setEdit] = useState(false);
 
   const onSubmit = e => {
     e.preventDefault();
 
     dispatch(editGoal({id: goal._id, text}));
-    setText(text);
+    setPrevText(text);
     setEdit(false);
   }
 
@@ -34,6 +35,13 @@ function GoalItem({goal}) {
           <button className="confirm-edit" type="submit">
             <FaCheck />
             <span class="visually-hidden">Confirm</span>
+          </button>
+          <button
+            className="undo-edit" 
+            onClick={() => {setText(prevText); setEdit(false)}}
+          >
+            <FaUndoAlt />
+            <span class="visually-hidden">Undo and close edit</span>
           </button>
         </form>
       ) : (
