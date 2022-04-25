@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteGoal, editGoal } from '../features/goals/goalSlice'
-import { FaEdit, FaCheck, FaUndoAlt } from 'react-icons/fa';
+import { deleteGoal, editGoal } from "../features/goals/goalSlice";
+import { FaEdit, FaCheck, FaUndoAlt } from "react-icons/fa";
+import PropTypes from "prop-types"; 
 
 
 function GoalItem({goal}) {
@@ -16,12 +17,12 @@ function GoalItem({goal}) {
     dispatch(editGoal({id: goal._id, text}));
     setPrevText(text);
     setEdit(false);
-  }
+  };
 
   return (
     <li className="goal">
       <p>
-        {new Date(goal.createdAt).toLocaleString('fr-FR')}
+        {new Date(goal.createdAt).toLocaleString("fr-FR")}
       </p>
       {isBeingEdited ? (
         <form onSubmit={onSubmit} action="">
@@ -34,14 +35,14 @@ function GoalItem({goal}) {
           />
           <button className="confirm-edit" type="submit">
             <FaCheck />
-            <span class="visually-hidden">Confirm</span>
+            <span className="visually-hidden">Confirm</span>
           </button>
           <button
             className="undo-edit" 
-            onClick={() => {setText(prevText); setEdit(false)}}
+            onClick={() => {setText(prevText); setEdit(false);}}
           >
             <FaUndoAlt />
-            <span class="visually-hidden">Undo and close edit</span>
+            <span className="visually-hidden">Undo and close edit</span>
           </button>
         </form>
       ) : (
@@ -54,9 +55,13 @@ function GoalItem({goal}) {
       <button
         className="edit"
         onClick={() => setEdit(true)}
-      ><FaEdit /><span class="visually-hidden">edit goal</span></button>
+      ><FaEdit /><span className="visually-hidden">edit goal</span></button>
     </li>
-  )
+  );
 }
 
-export default GoalItem
+GoalItem.propTypes = {
+  name: PropTypes.object.isRequired,
+};
+
+export default GoalItem;

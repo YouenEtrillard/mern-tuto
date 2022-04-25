@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { FaUser } from 'react-icons/fa';
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FaUser } from "react-icons/fa";
 import { register, reset } from "../features/auth/authSlice";
-import Spinner from '../components/Spinner';
+import Spinner from "../components/Spinner";
 
 function Register() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    password2: '',
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
   });
 
   const { name, email, password, password2 } = formData;
@@ -19,7 +19,7 @@ function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if(isError) {
@@ -27,7 +27,7 @@ function Register() {
     }
 
     if(isSuccess || user) {
-      navigate('/');
+      navigate("/");
     }
 
     dispatch(reset());
@@ -38,25 +38,25 @@ function Register() {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }))
+    }));
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (password !== password2) {
-      toast.error('Passwords do not match');
+      toast.error("Passwords do not match");
     } else {
       const userData = {
         name, email, password
-      }
+      };
 
       dispatch(register(userData));
     }
   };
 
   if(isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
@@ -119,7 +119,7 @@ function Register() {
         </form>
       </section>
     </>
-  )
+  );
 }
 
-export default Register
+export default Register;

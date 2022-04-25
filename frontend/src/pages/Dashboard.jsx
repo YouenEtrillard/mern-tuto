@@ -19,7 +19,7 @@ function Dashboard() {
     }
 
     if (!user) {
-      navigate('/login');
+      navigate("/login");
     }
 
     dispatch(getGoals());
@@ -27,11 +27,11 @@ function Dashboard() {
     // do something when component unmounts by doing returning from the useEffect
     return () => {
       dispatch(reset());
-    }
-  }, [user, navigate, isError, message, dispatch])
+    };
+  }, [user, navigate, isError, message, dispatch]);
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
@@ -52,7 +52,7 @@ function Dashboard() {
         ) : (<h3>You have not set any goals</h3>)}
       </section>
     </>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

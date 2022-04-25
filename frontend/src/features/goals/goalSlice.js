@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import goalService from './goalService';
+import goalService from "./goalService";
 
 // Get goals from localStorage
-const goals = JSON.parse(localStorage.getItem('goals'));
+const goals = JSON.parse(localStorage.getItem("goals"));
 
 const initialState = {
   goals: goals ? goals : [],
   isError: false,
   isSuccess: false,
   isLoading: false,
-  message: '',
+  message: "",
 };
 
 // Create new goal
-export const createGoal = createAsyncThunk('goals/create',
+export const createGoal = createAsyncThunk("goals/create",
   async (goal, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -32,10 +32,10 @@ export const createGoal = createAsyncThunk('goals/create',
       return thunkAPI.rejectWithValue(message);
     }
   }
-)
+);
 
 // Get use goals
-export const getGoals = createAsyncThunk('goals/getAll',
+export const getGoals = createAsyncThunk("goals/getAll",
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -53,10 +53,10 @@ export const getGoals = createAsyncThunk('goals/getAll',
       return thunkAPI.rejectWithValue(message);
     }
   }
-)
+);
 
 // Delete user goal
-export const deleteGoal = createAsyncThunk('goals/delete',
+export const deleteGoal = createAsyncThunk("goals/delete",
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -75,10 +75,10 @@ export const deleteGoal = createAsyncThunk('goals/delete',
       return thunkAPI.rejectWithValue(message);
     }
   }
-)
+);
 
 // Edit goal
-export const editGoal = createAsyncThunk('goals/edit',
+export const editGoal = createAsyncThunk("goals/edit",
   async (goal, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -97,12 +97,13 @@ export const editGoal = createAsyncThunk('goals/edit',
       return thunkAPI.rejectWithValue(message);
     }
   }
-)
+);
 
 export const goalSlice = createSlice({
-  name: 'goal',
+  name: "goal",
   initialState,
   reducers: {
+    // eslint-disable-next-line no-unused-vars
     reset: (state) => initialState,
   },
   extraReducers: (builder) => {
@@ -145,9 +146,9 @@ export const goalSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
-    })
+    });
   }
-})
+});
 
 export const { reset } = goalSlice.actions; // actions actually is the "reducers"
-export default goalSlice.reducer
+export default goalSlice.reducer;
