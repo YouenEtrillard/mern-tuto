@@ -61,7 +61,7 @@ function GoalItem({goal}) {
 }
 
 GoalItem.propTypes = {
-  name: PropTypes.object.isRequired,
+  goal: PropTypes.object.isRequired,
 };
 
 export default GoalItem;
