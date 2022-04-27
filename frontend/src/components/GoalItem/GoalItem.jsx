@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteGoal, editGoal } from "../features/goals/goalSlice";
+import { deleteGoal, editGoal } from "../../features/goals/goalSlice";
 import { FaEdit, FaCheck, FaUndoAlt } from "react-icons/fa";
 import PropTypes from "prop-types"; 
 
