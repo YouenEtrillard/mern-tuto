@@ -22,7 +22,7 @@ function GoalItem({goal}) {
   return (
     <li className="goal">
       <p>
-        {new Date(goal.createdAt).toLocaleString("fr-FR")}
+        {new Date(goal.createdAt).toLocaleString("fr-FR", {dateStyle: "long"})}
       </p>
       {isBeingEdited ? (
         <form onSubmit={onSubmit} action="">
