@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { login, reset } from "../features/auth/authSlice";
-import Spinner from "../components/Spinner";
-import { FaSignInAlt } from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { login, reset } from '../features/auth/authSlice';
+import Spinner from '../components/Spinner';
+import { FaSignInAlt } from 'react-icons/fa';
 
 function Login() {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const { email, password } = formData;
@@ -17,20 +17,21 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
-    if(isError) {
+    if (isError) {
       toast.error(message);
     }
 
-    if(isSuccess || user) {
-      navigate("/");
+    if (isSuccess || user) {
+      navigate('/');
     }
 
     dispatch(reset());
-
-  }, [user, isError, isSuccess, message, navigate, dispatch ]);
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -44,13 +45,13 @@ function Login() {
 
     const userData = {
       email,
-      password
+      password,
     };
 
     dispatch(login(userData));
   };
 
-  if(isLoading) {
+  if (isLoading) {
     return <Spinner />;
   }
 
@@ -87,7 +88,9 @@ function Login() {
             />
           </div>
           <div className="form-group">
-            <button type="submit" className="btn btn-block">Login</button>
+            <button type="submit" className="btn btn-block">
+              Login
+            </button>
           </div>
         </form>
       </section>
