@@ -99,7 +99,7 @@ h3 {
   position: relative;
 }
 
-.goal .close,
+.goal .delete,
 .goal .edit {
   position: absolute;
   top: 10px;
@@ -108,7 +108,7 @@ h3 {
   background: none;
 }
 
-.goal .close {
+.goal .delete {
   right: 15px;
 }
 

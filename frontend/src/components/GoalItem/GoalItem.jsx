@@ -55,12 +55,13 @@ function GoalItem({ goal }) {
       ) : (
         <h2>{text}</h2>
       )}
-      <button className="close" onClick={() => dispatch(deleteGoal(goal._id))}>
+      <button className="delete" onClick={() => dispatch(deleteGoal(goal._id))}>
         X
+        <span className="visually-hidden">Delete goal</span>
       </button>
       <button className="edit" onClick={() => setEdit(true)}>
         <FaEdit />
-        <span className="visually-hidden">edit goal</span>
+        <span className="visually-hidden">Edit goal</span>
       </button>
     </li>
   );
